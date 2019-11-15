@@ -1,0 +1,29 @@
+{
+  "name": "gulp-delete-js-debug",
+  "version": "1.0.0",
+  "description": "Gulp plagin for delete javascript debug informaton.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ex2life/gulp-delete-js-debug.git"
+  },
+  "keywords": [
+    "gulp",
+    "javascript",
+    "debug",
+    "delete",
+    "prod"
+  ],
+  "author": "Abramov Sergey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ex2life/gulp-delete-js-debug/issues"
+  },
+  "homepage": "https://github.com/ex2life/gulp-delete-js-debug#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
