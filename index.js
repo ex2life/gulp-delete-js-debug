@@ -11,7 +11,7 @@ function generate_reg_string(debugtype) {
     if ((debugtype.indexOf( 'console' ) !== -1)||(debugtype.indexOf( 'window.console' ) !== -1)) {
         var str="("
         if (debugtype.indexOf( 'console' ) !== -1){
-            str+="console";
+            str+="(?<!\\.)console";
             if (debugtype.indexOf( 'window.console' ) !== -1) str+="|";
         }
         if (debugtype.indexOf( 'window.console' ) !== -1) str+="window.console";
@@ -38,23 +38,15 @@ function obrabot(options) {
                 options.debugtype = [
                     "console",
                     "window.console",
-                    "debbuger"
+                    "debugger"
                 ];
             }
-            console.log(options.debugtype);
+            console.log("Удалена следующая отладочная информация: "+options.debugtype);
             //генерируем регулярное выражение
             var regex_console = new RegExp(
                 generate_reg_string(options.debugtype),
-                "gi"
+                "gim"
             );
-            /*var regex_console = new RegExp(
-                (options.debugtype.indexOf( 'debugger' ) !== -1 ? "debugger;|" :
-                "(console|window.console)." +
-                    "(?:log|info|warn|error|assert|count|clear|group|groupEnd|groupCollapsed|trace|debug|dir|dirxml|profile|profileEnd|time|timeEnd|timeStamp|table|exception)" +
-                    "\\([^;]*\\);?"),
-                "gi"
-            );*/
-            console.log(regex_console);
             const data = file.contents.toString()
             // Заменяем информацию для отладки на пустую строку
                 .replace(regex_console,"");
