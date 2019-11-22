@@ -8,6 +8,7 @@ const PLUGIN_NAME = 'gulp-delete-js-debug';
 function generate_reg_string(debugtype) {
     var strmas=[];
     if (debugtype.indexOf( 'debugger' ) !== -1) strmas.push("debugger;");
+    if (debugtype.indexOf( 'alert' ) !== -1) strmas.push("alert\\([^;]*\\);");
     if ((debugtype.indexOf( 'console' ) !== -1)||(debugtype.indexOf( 'window.console' ) !== -1)) {
         var str="("
         if (debugtype.indexOf( 'console' ) !== -1){
@@ -38,7 +39,8 @@ function obrabot(options) {
                 options.debugtype = [
                     "console",
                     "window.console",
-                    "debugger"
+                    "debugger",
+                    "alert"
                 ];
             }
             console.log("Удалена следующая отладочная информация: "+options.debugtype);
